@@ -2,6 +2,7 @@ import fs from "fs-extra";
 import Logger from "jet-logger";
 import childProcess from "child_process";
 
+// Setup logger
 const logger = new Logger();
 logger.timestamp = false;
 
@@ -9,13 +10,10 @@ logger.timestamp = false;
     try {
         // Remove current build
         await remove("./dist/");
-        // Copy front-end files
-        await copy("./src/public", "./dist/public");
-        await copy("./src/views", "./dist/views");
         // Copy production env file
         await copy(
             "./src/pre-start/env/production.env",
-            "./dist/pre-start/env/production.env"
+            "./dist/src/pre-start/env/production.env"
         );
         // Copy back-end files
         await exec("tsc --build tsconfig.prod.json", "./");

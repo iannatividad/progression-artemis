@@ -1,7 +1,7 @@
 import db from "./db";
-import { emptyOrRows, getOffset } from "src/utils/helper";
-import { config } from "src/constants/config";
-import { hunterCreateType, hunterUpdateType } from "src/types/hunter.type";
+import { emptyOrRows, getOffset } from "../utils/helper";
+import { config } from "../constants/config";
+import { hunterCreateType, hunterUpdateType } from "../types/hunter.type";
 
 async function getMultiple(page = 1) {
     const offset = getOffset(page, config.listPerPage);

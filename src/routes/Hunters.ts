@@ -1,9 +1,9 @@
 import StatusCodes from "http-status-codes";
 import { Request, Response } from "express";
 
-import Hunters from "src/services/hunters";
-import { paramMissingError } from "@shared/constants";
-import { hunterCreateType, hunterUpdateType } from "src/types/hunter.type";
+import Hunters from "../services/hunters";
+import { paramMissingError } from "../shared/constants";
+import { hunterCreateType, hunterUpdateType } from "../types/hunter.type";
 
 const { BAD_REQUEST, CREATED, OK } = StatusCodes;
 
