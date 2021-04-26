@@ -1,0 +1,206 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Project Progression Artemis",
+        "description": "This is a simple CRUD API application.",
+        "version": "1.0.0",
+        "contact": {
+            "name": "Ian Natividad",
+            "email": "ian@symph.co"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://spdx.org/licenses/MIT.html"
+        }
+    },
+    "basePath": "/hunter",
+    "paths": {
+        "/hunter": {
+            "get": {
+                "summary": "Get all the hunters",
+                "description": "Get all the saved hunters from the database",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/response"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/hunter/create": {
+            "post": {
+                "summary": "Create a hunter",
+                "description": "Create a hunter and save it to database",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "params",
+                        "description": "Create object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/hunterCreate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/response"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/hunter/update": {
+            "put": {
+                "summary": "Update a hunter",
+                "description": "Update and save a hunter",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "params",
+                        "description": "Update object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/hunterUpdate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/response"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/hunter/delete/{id}": {
+            "delete": {
+                "summary": "Delete a hunter",
+                "description": "Delete a hunter and update database",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "hunter id that needs to be deleted",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/response"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "hunterCreate": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "power": {
+                    "type": "string"
+                }
+            }
+        },
+        "hunterUpdate": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "power": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "response": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "assignee": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "InvalidResponse": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

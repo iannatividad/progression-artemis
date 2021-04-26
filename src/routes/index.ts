@@ -7,15 +7,11 @@ import {
     updateHunter,
 } from "./Hunters";
 
-const userRouter = Router();
+const hunterRouter = Router();
 
-userRouter.get("/all", getAllHunters);
-userRouter.post("/create", createHunter);
-userRouter.put("/update", updateHunter);
-userRouter.delete("/delete/:id", deleteHunter);
+hunterRouter.get("/", getAllHunters);
+hunterRouter.post("/create", createHunter);
+hunterRouter.put("/update", updateHunter);
+hunterRouter.delete("/delete/:id", deleteHunter);
 
-const baseRouter = Router();
-
-baseRouter.use("/hunter", userRouter);
-
-export default baseRouter;
+export default hunterRouter;

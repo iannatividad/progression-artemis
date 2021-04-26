@@ -1,13 +1,15 @@
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import helmet from "helmet";
+import swaggerUi from "swagger-ui-express";
 
-import express, { NextFunction, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import StatusCodes from "http-status-codes";
 import "express-async-errors";
+import swaggerDoc from "../swagger.json";
 
-import BaseRouter from "./routes";
 import logger from "./shared/Logger";
+import hunterRouter from "./routes";
 
 const app = express();
 const { BAD_REQUEST } = StatusCodes;
@@ -24,10 +26,11 @@ if (process.env.NODE_ENV === "production") {
     app.use(helmet());
 }
 
-app.use("/", BaseRouter);
+app.use("/hunter", hunterRouter);
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+
+app.use((err: Error, _: Request, res: Response) => {
     logger.err(err, true);
     return res.status(BAD_REQUEST).json({
         error: err.message,
