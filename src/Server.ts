@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import helmet from "helmet";
 import swaggerUi from "swagger-ui-express";
+import cors from "cors";
 
 import express, { Request, Response } from "express";
 import StatusCodes from "http-status-codes";
@@ -17,6 +19,7 @@ const { BAD_REQUEST } = StatusCodes;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(cors({ credentials: true, origin: true }));
 
 if (process.env.NODE_ENV === "development") {
     app.use(morgan("dev"));

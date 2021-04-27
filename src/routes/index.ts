@@ -9,7 +9,7 @@ import {
 
 const hunterRouter = Router();
 
-hunterRouter.get("/", getAllHunters);
+hunterRouter.get("/all", getAllHunters);
 hunterRouter.post("/create", createHunter);
 hunterRouter.put("/update", updateHunter);
 hunterRouter.delete("/delete/:id", deleteHunter);

@@ -15,7 +15,7 @@
     },
     "basePath": "/hunter",
     "paths": {
-        "/hunter": {
+        "/hunter/all": {
             "get": {
                 "summary": "Get all the hunters",
                 "description": "Get all the saved hunters from the database",
