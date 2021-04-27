@@ -16,7 +16,7 @@ export const options = {
         },
         servers: [
             {
-                url: "http://localhost:3000/hunter",
+                url: "http://localhost:8081/hunter",
             },
         ],
     },
