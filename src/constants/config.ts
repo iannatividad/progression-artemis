@@ -1,3 +1,3 @@
 export const config = {
-    listPerPage: 10,
+  listPerPage: 10,
 };

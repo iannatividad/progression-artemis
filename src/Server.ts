@@ -22,11 +22,11 @@ app.use(cookieParser());
 app.use(cors({ credentials: true, origin: true }));
 
 if (process.env.NODE_ENV === "development") {
-    app.use(morgan("dev"));
+  app.use(morgan("dev"));
 }
 
 if (process.env.NODE_ENV === "production") {
-    app.use(helmet());
+  app.use(helmet());
 }
 
 app.use("/hunter", hunterRouter);
@@ -34,10 +34,10 @@ app.use("/hunter", hunterRouter);
 app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 app.use((err: Error, _: Request, res: Response) => {
-    logger.err(err, true);
-    return res.status(BAD_REQUEST).json({
-        error: err.message,
-    });
+  logger.err(err, true);
+  return res.status(BAD_REQUEST).json({
+    error: err.message,
+  });
 });
 
 export default app;

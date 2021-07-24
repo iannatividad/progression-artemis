@@ -8,11 +8,11 @@ import { db_config } from "../../dbConfig";
 const pool = new Pool(db_config as PoolConfig);
 
 async function query(query: string, params: any) {
-    const { rows } = await pool.query(query, params);
+  const { rows } = await pool.query(query, params);
 
-    return rows;
+  return rows;
 }
 
 export = {
-    query,
+  query,
 };
